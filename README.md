@@ -5,7 +5,7 @@ This library is meant to improve the readability by providing a fluent API on op
 There are many attemps to implement alike libraries such as Guava BiOptional library or QuarterBukkit BiOptional. However they
 do not have factory methods with Optionals as parameters. They just take in nonOptional values which makes the use case different compared to CombinedOptionals.
 
-The closest implementation to this library is Tomas Linkowski's answer here on: https://stackoverflow.com/questions/51847513/calling-different-methods-based-on-values-of-two-optionals
+The closest implementation to this library is Tomas Linkowski's answer here on: https://stackoverflow.com/questions/51847513/calling-different-methods-based-on-values-of-two-optionals.
 But OptionalCombiner transforms it and adds key ideas like combined reduction to Optional class and combined filtering. OptionalCombiner also has some utilities for transofrming the computation to CompletableFutures.
 
 Sample Usage:
