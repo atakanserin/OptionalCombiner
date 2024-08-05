@@ -66,8 +66,5 @@ creditScoreSourceA
         combinedScore -> mqttService.fireSuccessEvent(combinedScore),
         () -> mqttService.sendFailureEvent()
     );
-        .ifPresentOrElse(
-                score -> mqttService.fireSuccessEvent(score),
-                () -> mqttService.sendFailureEvent());
 ```
 
