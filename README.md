@@ -21,7 +21,7 @@ OptionalCombiner.of(creditScoreSourceA, creditScoreSourceB)
         .reduce(Util::combineCreditScores)
         .ifPresentOrElse(
                 score -> mqttService.fireSuccessEvent(score),
-                () -> mqttService.sendFailureEvent(CREDIT_SOURCES_INCOMPLETE));
+                () -> mqttService.fireFailureEvent(CREDIT_SOURCES_INCOMPLETE));
 ```
 Same code is usually written using nested if elses which clutters and nests the code in my opinion:
 ```java
@@ -39,10 +39,10 @@ if (creditScoreSourceA.isPresent() && creditScoreSourceB.isPresent()) {
         Integer combinedScore = Util.combineCreditScores(adjustedScoreA, adjustedScoreB);
         mqttService.fireSuccessEvent(combinedScore);
     } else {
-        mqttService.sendFailureEvent(INCOMPLETE_CREDIT_SOURCES);
+        mqttService.fireFailureEvent(INCOMPLETE_CREDIT_SOURCES);
     }
 } else {
-    mqttService.sendFailureEvent(INCOMPLETE_CREDIT_SOURCES);
+    mqttService.fireFailureEvent(INCOMPLETE_CREDIT_SOURCES);
 }
 ```
 
@@ -63,7 +63,7 @@ creditScoreSourceA
     )
     .ifPresentOrElse(
         combinedScore -> mqttService.fireSuccessEvent(combinedScore),
-        () -> mqttService.sendFailureEvent()
+        () -> mqttService.fireFailureEvent()
     );
 ```
 
