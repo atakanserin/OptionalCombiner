@@ -46,7 +46,7 @@ if (creditScoreSourceA.isPresent() && creditScoreSourceB.isPresent()) {
 }
 ```
 
-Optional flatMap method can be used to combine Optionals also. Better readability compared to if else case, but still not on par with CombinedOptionals in my opinion.
+Optional flatMap method can be used to combine Optionals also. Better readability compared to if else style, but still not on par with CombinedOptionals in my opinion.
 
 ```java
 Optional<Integer> creditScoreSourceA = sourceAService.fetchCreditScore();
