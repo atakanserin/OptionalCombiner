@@ -102,7 +102,6 @@ public class OptionalCombiner<T, R> {
         if (isBothPresent()) {
             T valueLeft = oLeft.get();
             R valueRight = oRight.get();
-
             return biPredicate.test(valueLeft, valueRight)
                     ? this
                     : (OptionalCombiner<T, R>) BOTH_EMPTY;
@@ -162,7 +161,6 @@ public class OptionalCombiner<T, R> {
         if (isBothPresent()) {
             T valueLeft = oLeft.get();
             R valueRight = oRight.get();
-
             return (Optional<U>) flatReducer.apply(valueLeft, valueRight);
         } else {
             return Optional.empty();
@@ -222,7 +220,6 @@ public class OptionalCombiner<T, R> {
         if (isBothPresent()) {
             T valueLeft = oLeft.get();
             R valueRight = oRight.get();
-
             return Objects.requireNonNull(mapper.apply(valueLeft, valueRight));
         } else {
             return (OptionalCombiner<U, D>) BOTH_EMPTY;
