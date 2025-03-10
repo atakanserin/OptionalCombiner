@@ -6,7 +6,7 @@ There are many attemps to implement alike libraries such as Guava BiOptional lib
 do not have factory methods with Optionals as parameters. They just take in nonOptional values which makes the use case different compared to OptionalCombiner.
 
 The closest implementation to this library is Tomas Linkowski's answer here on: https://stackoverflow.com/questions/51847513/calling-different-methods-based-on-values-of-two-optionals.
-But this library, OptionalCombiner, implements important ideas like combined reduction to Optional class and combined filtering. OptionalCombiner also has some utilities for transofrming the computation to CompletableFutures.
+However OptionalCombiner implements important additional ideas like combined reduction to Optional class and combined filtering. OptionalCombiner also has some utilities for transforming the computation to CompletableFutures.
 
 Sample Usage:
 ```java
