@@ -241,7 +241,7 @@ public class OptionalCombiner<T, R> {
     public <U> OptionalCombiner<U, R> mapIfOnlyLeftPresent(Function<? super T, ? extends U> leftMapper) {
         return isOnlyLeftPresent()
                 ? mapLeft(leftMapper)
-                : OptionalCombiner.of(Optional.empty(), oRight);
+                : new OptionalCombiner<>(oLeft, oRight);
     }
 
     public <U> OptionalCombiner<T, U> mapRight(Function<? super R, ? extends U> rightMapper) {
@@ -251,7 +251,7 @@ public class OptionalCombiner<T, R> {
     public <U> OptionalCombiner<T, U> mapIfOnlyRightPresent(Function<? super R, ? extends U> rightMapper) {
         return isOnlyRightPresent()
                 ? mapRight(rightMapper)
-                : OptionalCombiner.of(oLeft, Optional.empty());
+                : new OptionalCombiner<>(oLeft, oRight);
     }
 
     public OptionalCombiner<T, R> run(Runnable action) {
