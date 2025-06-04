@@ -103,10 +103,10 @@ public class OptionalCombiner<T, R> {
             T valueLeft = oLeft.get();
             R valueRight = oRight.get();
             return biPredicate.test(valueLeft, valueRight)
-                    ? this
+                    ? of(oLeft, oRight)
                     : (OptionalCombiner<T, R>) BOTH_EMPTY;
         } else {
-            return this;
+            return of(oLeft, oRight);
         }
     }
 
@@ -241,7 +241,7 @@ public class OptionalCombiner<T, R> {
     public <U> OptionalCombiner<U, R> mapIfOnlyLeftPresent(Function<? super T, ? extends U> leftMapper) {
         return isOnlyLeftPresent()
                 ? mapLeft(leftMapper)
-                : (OptionalCombiner<U, R>) OptionalCombiner.of(oLeft, oRight);
+                : (OptionalCombiner<U, R>) of(oLeft, oRight);
     }
 
     public <U> OptionalCombiner<T, U> mapRight(Function<? super R, ? extends U> rightMapper) {
@@ -251,19 +251,19 @@ public class OptionalCombiner<T, R> {
     public <U> OptionalCombiner<T, U> mapIfOnlyRightPresent(Function<? super R, ? extends U> rightMapper) {
         return isOnlyRightPresent()
                 ? mapRight(rightMapper)
-                : (OptionalCombiner<T, U>) OptionalCombiner.of(oLeft, oRight);
+                : (OptionalCombiner<T, U>) of(oLeft, oRight);
     }
 
     public OptionalCombiner<T, R> run(Runnable action) {
         Objects.requireNonNull(action);
         action.run();
-        return this;
+        return of(oLeft, oRight);
     }
 
     private OptionalCombiner<T, R> runIf(boolean condition, Runnable action) {
         Objects.requireNonNull(action);
         if (condition) action.run();
-        return this;
+        return of(oLeft, oRight);
     }
 
     public OptionalCombiner<T, R> runIfLeftPresent(Runnable action) {
