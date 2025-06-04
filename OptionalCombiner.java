@@ -230,7 +230,7 @@ public class OptionalCombiner<T, R> {
         if (isBothEmpty()) {
             return (OptionalCombiner<T, R>) defaultOptionalCombiner;
         } else {
-            return this;
+            return of(oLeft, oRight);
         }
     }
 
